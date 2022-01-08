@@ -2,7 +2,7 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="csrf-token" content="{{ csrf_token() }}">
-      <title>Covid-19 Certainty Factor | {{$title ?? ""}} </title>
+      <title>ENGLISH LECTURERS AND TEACHERS ASSOCIATION | {{$title ?? ""}} </title>
       <!-- Tell the browser to be responsive to screen width -->
       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
       <link rel="stylesheet" href="{{asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -19,7 +19,7 @@
             page. However, you can choose any other skin. Make sure you
             apply the skin class to the body tag so the changes take effect. -->
       <link rel="stylesheet" href="{{asset('assets/dist/css/skins/skin-purple.min.css')}}">
-      <link rel="icon" type="image/x-icon" href="{{asset('assets/bower_components/material/img/logo/logo.png')}}">
+{{--      <link rel="icon" type="image/x-icon" href="{{asset('assets/bower_components/material/img/logo/logo.png')}}">--}}
       @yield('style_graph')
 
 
