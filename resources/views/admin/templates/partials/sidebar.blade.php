@@ -10,8 +10,8 @@
 
             {{--dasbboard--}}
             <li class="{{$subDashboard ?? ""}}"><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            {{--diagnisa--}}
-            @role('pasien')
+            {{--membership--}}
+            @role('membership')
             <li class="{{$subDiagnosa ?? ""}}"><a href="{{url('/diagnosa')}}"><i class="fa fa-medkit"></i> <span>Diagnosa</span></a></li>
             @endrole
 
@@ -38,44 +38,41 @@
             </li>
             {{--module--}}
             <li class="{{$subGejala   ?? ""}} treeview">
-                <a href=""><i class="fa fa-database"></i> <span>Module</span>
+                <a href=""><i class="fa fa-sliders"></i> <span>Setting</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
                     <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-gg"></i><span>Symptom/Gejala</span></a>
+                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Menu</span></a>
+                    </li>
+                    <li class="nav-item {{$subGejala   ?? ""}}">
+                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Header</span></a>
+                    </li>
+                    <li class="nav-item {{$subGejala   ?? ""}}">
+                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>About Membership</span></a>
+                    </li>
+                    <li class="nav-item {{$subGejala   ?? ""}}">
+                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Colaboration</span></a>
+                    </li>
+                    <li class="nav-item {{$subGejala   ?? ""}}">
+                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Testimonials</span></a>
                     </li>
                 </ul>
-            </li>
-            {{--pemeriksaaan--}}
-            <li class=" {{$subPasien   ?? ""}} {{$subDiagnosa   ?? ""}} treeview">
-                <a href=""><i class="fa fa-medkit"></i> <span>Inspection</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="nav-item {{$subPasien   ?? ""}}">
-                        <a href="{{route('admin.pasien.index')}}" class="nav-link"><i class="fa fa-user-md"></i><span>Patient / Peserta</span></a>
-                    </li>
-                    <li class="nav-item {{$subDiagnosa   ?? ""}}">
-                        <a href="" class="nav-link"><i class="fa fa-arrow-right"></i><span>Diagnosa</span></a>
-                    </li>
-                </ul>
+
             </li>
             {{--laporan--}}
             <li class="{{$subFakultas   ?? ""}} {{$subProdi   ?? ""}} {{$subJalurMasuk   ?? ""}}  {{$subGelombang   ?? ""}} {{$subBiayaPendaftaran   ?? ""}} treeview">
-                <a href=""><i class="fa fa-print"></i> <span>Report</span>
+                <a href=""><i class="fa fa-newspaper-o"></i> <span>News & article</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
                     <li class="nav-item {{$subFakultas   ?? ""}}">
-                        <a href="" class="nav-link"><i class="fa fa-dashboard"></i><span>Gejala</span></a>
-                        <a href="" class="nav-link"><i class="fa fa-dashboard"></i><span>User</span></a>
+                        <a href="" class="nav-link"><i class="fa fa-plus"></i><span>Create Article</span></a>
+                        <a href="" class="nav-link"><i class="fa fa-newspaper-o"></i><span>Show Article</span></a>
                     </li>
                 </ul>
             </li>
