@@ -30,8 +30,7 @@ Route::name('admin.') //pemberian nama seperti admin.user.index
     Route::resource('user','UserController');
     Route::resource('role','RoleController');
     Route::resource('permission','PermissionController');
-    Route::resource('gejala','GejalaController');
-    Route::resource('pasien','PasienController');
+    Route::resource('news', 'NewsController');
 });
 
 Route::get('/diagnosa','DiagnosaController@index')->name('diagnosa.index');
