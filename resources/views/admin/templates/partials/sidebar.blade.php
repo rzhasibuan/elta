@@ -45,19 +45,19 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Menu</span></a>
+                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Menu</span></a>
                     </li>
                     <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Header</span></a>
+                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Header</span></a>
                     </li>
                     <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>About Membership</span></a>
+                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>About Membership</span></a>
                     </li>
                     <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Colaboration</span></a>
+                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Colaboration</span></a>
                     </li>
                     <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="{{route('admin.gejala.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Testimonials</span></a>
+                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Testimonials</span></a>
                     </li>
                 </ul>
 
@@ -71,8 +71,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="nav-item {{$subFakultas   ?? ""}}">
-                        <a href="" class="nav-link"><i class="fa fa-plus"></i><span>Create Article</span></a>
-                        <a href="" class="nav-link"><i class="fa fa-newspaper-o"></i><span>Show Article</span></a>
+                        <a href="{{route('admin.news.create')}}" class="nav-link"><i class="fa fa-plus"></i><span>Create Article</span></a>
+                        <a href="{{route('admin.news.index')}}" class="nav-link"><i class="fa fa-newspaper-o"></i><span>Show Article</span></a>
                     </li>
                 </ul>
             </li>
