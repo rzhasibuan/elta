@@ -19,6 +19,7 @@ class CreateNewsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('thumbnail');
+            $table->enum('category',['news','information', 'articles']);
             $table->text('article');
             $table->boolean('published');
             $table->timestamps();

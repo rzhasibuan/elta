@@ -22,11 +22,11 @@
             @csrf
             <div class="box-body">
                 <div class="form-group">
-                    <label for="judul">JUDUL BERITA</label>
-                    <input type="text" class="form-control" id="judul" placeholder="Masukkan judul berita" name="judul" value="{{old('judul')}}">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" placeholder="please type title" name="title" value="{{old('title')}}">
                     <div class="has-error">
                     <span class="help-block">
-                        {{$errors->first('judul')}}
+                        {{$errors->first('title')}}
                     </span>
                     </div>
                 </div>
@@ -90,8 +90,6 @@
 
 
 @section('js_datatable')
-    <script src="{{asset('assets/bower_components/bs-notify/bootstrap-notify.min.js')}}"></script>
-
     <!-- CK Editor -->
     <script src="{{asset('assets/bower_components/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
