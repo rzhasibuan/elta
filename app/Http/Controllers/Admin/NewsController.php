@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\News;
+use App\Traits\FlashAlert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class NewsController extends Controller
 {
+    use FlashAlert;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,11 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.news.index');
+        $news = News::all();
+        return view('admin.pages.news.index',[
+            'title' => 'List news & atricles',
+            'data' => $news
+        ]);
     }
 
     /**
@@ -24,18 +33,45 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.news.create');
+        return view('admin.pages.news.create',[
+            'title' => 'Create news & articles'
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+            $request->validate([
+                'title'=> 'required|min:5|max:191',
+                'article' => 'required',
+                'published' => 'required',
+                'category' => 'required|max:30',
+                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
+            ]);
+
+            // thumbnail upload
+            $thumbnailFile = '';
+            if ($request->file('thumbnail')){
+                $thumbnail = $request->file('thumbnail')->store('articles','public');
+                $thumbnailFile = $thumbnail;
+            }
+
+            // save in db
+            $news = News::create([
+                'user_id' => auth()->user()->id,
+                'title' => $request->title,
+                'slug' => strtolower(Str::slug($request->title. '_'. time())),
+                'thumbnail' => $thumbnailFile,
+                'category' => $request->category,
+                'article' => $request->article,
+                'published' => $request->published
+            ]);
+            return redirect()->route('admin.news.index')->with($this->alertCreated());
     }
 
     /**

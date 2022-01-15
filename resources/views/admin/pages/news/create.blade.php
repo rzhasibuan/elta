@@ -13,9 +13,7 @@
 
 @section('content')
     <div class="box box-primary">
-    {{-- <div class="box-header with-border">
-        <h3 class="box-title">TULIS BERITA BARU</h3>
-    </div> --}}
+
     <!-- /.box-header -->
         <!-- form start -->
         <form action="{{route('admin.news.store')}}" method="post" enctype="multipart/form-data">
@@ -32,57 +30,58 @@
                 </div>
 
                 <div class="form-group">
-                    <label>KATEGORI</label>
-                    <select class="form-control select2" style="width: 100%;" name="kategori">
-                        <option selected disabled>PILIH KETEGORI</option>
-                        <option value="berita">berita</option>
-                        <option value="tentang">tentang</option>
+                    <label>Category</label>
+                    <select class="form-control select2" style="width: 100%;" name="category">
+                        <option selected disabled>Select category</option>
+                        <option value="news">news</option>
+                        <option value="information">information</option>
+                        <option value="articles">articles</option>
                     </select>
                     <div class="has-error">
                     <span class="help-block">
-                        {{$errors->first('kategori')}}
+                        {{$errors->first('category')}}
                     </span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="gambar">Gambar berita</label>
-                    <input type="file" id="gambar" name="gambar">
+                    <label for="thumbnail">Thumbnail</label>
+                    <input type="file" id="thumbnail" name="thumbnail">
                     {{-- <p class="help-block">Example block-level help text here.</p> --}}
                     <div class="has-error">
                     <span class="help-block">
-                        {{$errors->first('gambar')}}
+                        {{$errors->first('thumbnail')}}
                     </span>
                     </div>
                 </div>
 
 
                 <div class="form-group">
-                    <label for="isi">ISI BERITA</label>
-                    <textarea name="isi" id="isi" cols="30" rows="10">{{old('isi')}}</textarea>
+{{--                    <label for="article">article</label>--}}
+                    <textarea name="article" id="article" cols="60" rows="10">{{old('article')}}</textarea>
                     <div class="has-error">
                     <span class="help-block">
-                        {{$errors->first('isi')}}
+                        {{$errors->first('article')}}
                     </span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>STATUS</label>
-                    <select class="form-control select2" style="width: 100%;" name="status">
-                        <option selected disabled>PILIH STATUS</option>
-                        <option value="active">active</option>
-                        <option value="nonactive">nonactive</option>
+                    <label>Published</label>
+                    <select class="form-control select2" style="width: 100%;" name="published">
+                        <option selected disabled>Select Option</option>
+                        <option value=1>publish</option>
+                        <option value=0>draf</option>
                     </select>
                     <div class="has-error">
                     <span class="help-block">
-                        {{$errors->first('status')}}
+                        {{$errors->first('published')}}
                     </span>
                     </div>
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">BUAT</button>
-                    <a href="{{route('admin.news.index')}}" class="btn btn-danger">BATAL</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="{{route('admin.news.index')}}" class="btn btn-danger">Cancel</a>
                 </div>
         </form>
     </div>
@@ -94,11 +93,12 @@
     <script src="{{asset('assets/bower_components/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
+
     <script>
         $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
-            CKEDITOR.replace('isi',{
+            CKEDITOR.replace('article',{
                 filebrowserUploadUrl: "{{route('admin.ckeditor.image-upload', ['_token' => csrf_token() ])}}",
                 filebrowserUploadMethod : 'form',
             })
