@@ -23,6 +23,7 @@
                 <thead>
                 <tr>
                     <th>No</th>
+                    <th>Preview</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Published</th>
@@ -36,7 +37,12 @@
                 @endphp
                 @foreach($data as $dt)
                     <tr>
-                        <a href="{{route('admin.news.edit',[$dt->id])}}"><td>{{$i++}}</td>
+                        <td>{{$i++}}</td>
+                        <td>
+                            <a href="{{route('admin.news.edit',[$dt->id])}}" class="btn btn-app btn-sm">
+                                <i class="fa fa-eye"></i> Show
+                            </a>
+                        </td>
                         <td>{{$dt->title}}</td>
                         <td>{{$dt->userNews->name}}</td>
                         <td>
@@ -47,15 +53,18 @@
                             @endif
                         </td>
                         <td>{{$dt->created_at->format('d F, Y')}}</td>
-                        </a>
+
                         <td>
                             <form action="{{route('admin.news.destroy',[$dt->id])}}" class="d-inline" onsubmit="return confirm('Apakah anda ingin menghapus ini secara permanen ?')" method="POST">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-app btn-sm">
                                     <i class="fa fa-trash"></i>
+                                    Trash
                                 </button> <br>
                             </form>
+
+
                         </td>
                     </tr>
                 @endforeach
@@ -63,6 +72,7 @@
                 <tfoot>
                 <tr>
                     <th>No</th>
+                    <th>Preview</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Published</th>
