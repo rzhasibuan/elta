@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\News;
 use App\Traits\FlashAlert;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -82,18 +83,26 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-//        return view('admin.')
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        try{
+            $data = News::findOrFail($id);
+            return view('admin.pages.news.edit',[
+                'title' => 'Edit News & Article',
+                'data' => $data
+            ]);
+        }catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.news.index')->with($this->alertNotFound());
+        }
     }
 
     /**
@@ -105,7 +114,40 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $data = News::findOrFail($id);
+
+            $request->validate([
+                'title'=> 'required|min:5|max:191',
+                'article' => 'required',
+                'published' => 'required',
+                'category' => 'required|max:30',
+                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
+            ]);
+
+            // thumbnail upload
+            $thumbnailFile = '';
+            if ($data->thumbnail && file_exists(storage_path('app/public/'. $data->thumbnail))){
+                \Storage::delete('public/'.$data->thumbnail);
+                $thumbnail = $request->file('thumbnail')->store('articles','public');
+                $thumbnailFile = $thumbnail;
+            }
+
+            // save in db
+            $data->update([
+                'user_id' => auth()->user()->id,
+                'title' => $request->title,
+                'slug' => strtolower(Str::slug($request->title. '_'. time())),
+                'thumbnail' => $thumbnailFile,
+                'category' => $request->category,
+                'article' => $request->article,
+                'published' => $request->published
+            ]);
+            return redirect()->route('admin.news.index')->with($this->alertUpdated());
+        }catch (ModelNotFoundException $e){
+            return redirect()->route('admin.news.index')->with($this->alertDeleted());
+
+        }
     }
 
     /**
@@ -116,6 +158,16 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $data = News::findOrFail($id);
+            if ($data->thumbnail && file_exists(storage_path('app/public/'. $data->thumbnail))){
+                \Storage::delete('public/'.$data->thumbnail);
+            }
+            $data->delete();
+            return redirect()->route('admin.news.index')->with($this->alertDeleted());
+        }catch (ModelNotFoundException $e){
+            return redirect()->route('admin.news.index')->with($this->alertDeleted());
+
+        }
     }
 }
