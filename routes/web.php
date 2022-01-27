@@ -32,6 +32,7 @@ Route::name('admin.') //pemberian nama seperti admin.user.index
     Route::resource('permission','PermissionController');
     Route::resource('news', 'NewsController');
     Route::resource('header', 'HeaderController');
+    Route::resource('about-membership', 'AboutMembershipController');
     Route::post('ckeditor/upload', 'CKEditorController@upload')->name('ckeditor.image-upload');
 });
 
