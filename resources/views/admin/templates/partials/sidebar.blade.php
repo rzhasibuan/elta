@@ -37,41 +37,43 @@
                 </ul>
             </li>
             {{--module--}}
-            <li class="{{$subGejala   ?? ""}} treeview">
+            <li class="{{$subMenu   ?? ""}} {{$subHeader   ?? ""}} {{$subAboutMembership   ?? ""}} {{$subColaboration   ?? ""}} {{$subTestimonials   ?? ""}} treeview">
                 <a href=""><i class="fa fa-sliders"></i> <span>Setting</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="nav-item {{$subGejala   ?? ""}}">
+                    <li class="nav-item {{$subMenu   ?? ""}}">
                         <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Menu</span></a>
                     </li>
-                    <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Header</span></a>
+                    <li class="nav-item {{$subHeader   ?? ""}}">
+                        <a href="{{route('admin.header.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Header</span></a>
                     </li>
-                    <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>About Membership</span></a>
+                    <li class="nav-item {{$subAboutMembership   ?? ""}}">
+                        <a href="{{route('admin.about-membership.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>About Membership</span></a>
                     </li>
-                    <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Colaboration</span></a>
+                    <li class="nav-item {{$subColaboration   ?? ""}}">
+                        <a href="{{route('admin.colaboration.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Colaboration</span></a>
                     </li>
-                    <li class="nav-item {{$subGejala   ?? ""}}">
-                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Testimonials</span></a>
+                    <li class="nav-item {{$subTestimonials   ?? ""}}">
+                        <a href="{{route('admin.testimonials.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Testimonials</span></a>
                     </li>
                 </ul>
 
             </li>
             {{--laporan--}}
-            <li class="{{$subFakultas   ?? ""}} {{$subProdi   ?? ""}} {{$subJalurMasuk   ?? ""}}  {{$subGelombang   ?? ""}} {{$subBiayaPendaftaran   ?? ""}} treeview">
+            <li class="{{$subCreateAtricle   ?? ""}} {{$subShowArticle   ?? ""}}  treeview">
                 <a href=""><i class="fa fa-newspaper-o"></i> <span>News & article</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="nav-item {{$subFakultas   ?? ""}}">
+                    <li class="nav-item {{$subCreateAtricle   ?? ""}}">
                         <a href="{{route('admin.news.create')}}" class="nav-link"><i class="fa fa-plus"></i><span>Create Article</span></a>
+                    </li>
+                    <li class="nav-item {{$subShowArticle   ?? ""}}">
                         <a href="{{route('admin.news.index')}}" class="nav-link"><i class="fa fa-newspaper-o"></i><span>Show Article</span></a>
                     </li>
                 </ul>
