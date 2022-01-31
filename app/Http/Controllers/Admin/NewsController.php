@@ -23,7 +23,8 @@ class NewsController extends Controller
         $news = News::all();
         return view('admin.pages.news.index',[
             'title' => 'List news & atricles',
-            'data' => $news
+            'data' => $news,
+            'subShowArticle' => 'active'
         ]);
     }
 
@@ -35,7 +36,8 @@ class NewsController extends Controller
     public function create()
     {
         return view('admin.pages.news.create',[
-            'title' => 'Create news & articles'
+            'title' => 'Create news & articles',
+            'subCreateAtricle' => 'active'
         ]);
     }
 
@@ -98,7 +100,8 @@ class NewsController extends Controller
             $data = News::findOrFail($id);
             return view('admin.pages.news.edit',[
                 'title' => 'Edit News & Article',
-                'data' => $data
+                'data' => $data,
+                'subShowArticle' => 'active'
             ]);
         }catch (ModelNotFoundException $e) {
             return redirect()->route('admin.news.index')->with($this->alertNotFound());
