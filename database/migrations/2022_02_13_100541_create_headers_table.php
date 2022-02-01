@@ -18,6 +18,7 @@ class CreateHeadersTable extends Migration
             $table->string('bigtitle');
             $table->string('text');
             $table->string('linkButton');
+            $table->string('thumbnail');
             $table->timestamps();
         });
     }
