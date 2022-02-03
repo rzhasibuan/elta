@@ -37,7 +37,7 @@
                 </ul>
             </li>
             {{--module--}}
-            <li class="{{$subMenu   ?? ""}} {{$subHeader   ?? ""}} {{$subAboutMembership   ?? ""}} {{$subColaboration   ?? ""}} {{$subTestimonials   ?? ""}} treeview">
+            <li class="{{$subMenu   ?? ""}} {{$subHeader   ?? ""}} {{$subAboutMembership   ?? ""}} {{$subColaboration   ?? ""}} {{$subTestimonials   ?? ""}} {{$subAbout   ?? ""}} treeview">
                 <a href=""><i class="fa fa-sliders"></i> <span>Setting</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -49,6 +49,9 @@
                     </li>
                     <li class="nav-item {{$subHeader   ?? ""}}">
                         <a href="{{route('admin.header.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Header</span></a>
+                    </li>
+                    <li class="nav-item {{$subAbout   ?? ""}}">
+                        <a href="{{route('admin.about.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>About</span></a>
                     </li>
                     <li class="nav-item {{$subAboutMembership   ?? ""}}">
                         <a href="{{route('admin.about-membership.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>About Membership</span></a>
