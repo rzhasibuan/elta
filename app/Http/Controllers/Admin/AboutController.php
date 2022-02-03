@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\About;
 use App\Http\Controllers\Controller;
+use App\Traits\FlashAlert;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    use FlashAlert;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,16 @@ class AboutController extends Controller
      */
     public function index()
     {
-        //
+        $about = About::get();
+        if($about->count() > 0){
+            return redirect()->route('admin.about.edit',$about->first()->id);
+        }else{
+            return view('admin.pages.about.index',[
+                'title' => 'Setting about',
+                'subAbout' => 'active'
+            ]);
+
+        }
     }
 
     /**
@@ -35,7 +47,24 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'text' => 'required',
+            'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
+        ]);
+
+        // thumbnail upload
+        $thumbnailFile = '';
+        if ($request->file('thumbnail')){
+            $thumbnail = $request->file('thumbnail')->store('about','public');
+            $thumbnailFile = $thumbnail;
+        }
+
+        // save in db
+        $news = About::create([
+            'thumbnail' => $thumbnailFile,
+            'text' => $request->text,
+        ]);
+        return redirect()->route('admin.about.index')->with($this->alertCreated());
     }
 
     /**
@@ -57,7 +86,12 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = About::findOrFail($id);
+        return view('admin.pages.about.edit',[
+            'title' => 'Setting About',
+            'subAbout' => 'active',
+            'data' => $data
+        ]);
     }
 
     /**
@@ -69,7 +103,32 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $data = About::findOrFail($id);
+
+            $request->validate([
+                'text' => 'required',
+                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
+            ]);
+
+            // thumbnail upload
+            $thumbnailFile = '';
+            if ($data->thumbnail && file_exists(storage_path('app/public/'. $data->thumbnail))){
+                \Storage::delete('public/'.$data->thumbnail);
+                $thumbnail = $request->file('thumbnail')->store('about','public');
+                $thumbnailFile = $thumbnail;
+            }
+
+            // save in db
+            $data->update([
+                'thumbnail' => $thumbnailFile,
+                'text' => $request->text,
+            ]);
+            return redirect()->route('admin.about.index')->with($this->alertUpdated());
+        }catch (ModelNotFoundException $e){
+            return redirect()->route('admin.about.index')->with($this->alertDeleted());
+
+        }
     }
 
     /**
