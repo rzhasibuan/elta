@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Colaboration;
 use App\Http\Controllers\Controller;
+use App\Traits\FlashAlert;
 use Illuminate\Http\Request;
 
 class ColaborationController extends Controller
 {
+    use FlashAlert;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,12 @@ class ColaborationController extends Controller
      */
     public function index()
     {
-        //
+        $data = Colaboration::all();
+        return view('admin.pages.colaboration.index', [
+            'title' => 'Collaboration With',
+            'subColaboration' => 'active',
+            'data' => $data
+        ]);
     }
 
     /**
@@ -24,7 +32,10 @@ class ColaborationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.colaboration.create', [
+            'title' => 'Collaboration With',
+            'subColaboration' => 'active'
+        ]);
     }
 
     /**
@@ -35,7 +46,24 @@ class ColaborationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521',
+            'link'=> 'required|min:5|max:191',
+        ]);
+
+        // thumbnail upload
+        $thumbnailFile = '';
+        if ($request->file('thumbnail')){
+            $thumbnail = $request->file('thumbnail')->store('collaboration','public');
+            $thumbnailFile = $thumbnail;
+        }
+
+        // save in db
+        $news = Colaboration::create([
+            'thumbnail' => $thumbnailFile,
+            'link' => $request->link,
+        ]);
+        return redirect()->route('admin.colaboration.index')->with($this->alertCreated());
     }
 
     /**
@@ -57,7 +85,12 @@ class ColaborationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Colaboration::findOrFail($id);
+        return view('admin.pages.colaboration.edit',[
+            'title' => 'Collaboration with',
+            'subColaboration' => 'active',
+            'data' => $data
+        ]);
     }
 
     /**
@@ -69,7 +102,32 @@ class ColaborationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $data = Colaboration::findOrFail($id);
+
+            $request->validate([
+                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521',
+                'link'=> 'required|min:5|max:191',
+            ]);
+
+            // thumbnail upload
+            $thumbnailFile = '';
+            if ($data->thumbnail && file_exists(storage_path('app/public/'. $data->thumbnail))){
+                \Storage::delete('public/'.$data->thumbnail);
+                $thumbnail = $request->file('thumbnail')->store('collaboration','public');
+                $thumbnailFile = $thumbnail;
+            }
+
+            // save in db
+            $data->update([
+                'thumbnail' => $thumbnailFile,
+                'link' => $request->link,
+            ]);
+            return redirect()->route('admin.colaboration.index')->with($this->alertUpdated());
+        }catch (ModelNotFoundException $e){
+            return redirect()->route('admin.colaboration.index')->with($this->alertDeleted());
+
+        }
     }
 
     /**
@@ -80,6 +138,16 @@ class ColaborationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $data = Colaboration::findOrFail($id);
+            if ($data->thumbnail && file_exists(storage_path('app/public/'. $data->thumbnail))){
+                \Storage::delete('public/'.$data->thumbnail);
+            }
+            $data->delete();
+            return redirect()->route('admin.colaboration.index')->with($this->alertDeleted());
+        }catch (ModelNotFoundException $e){
+            return redirect()->route('admin.colaboration.index')->with($this->alertDeleted());
+
+        }
     }
 }
