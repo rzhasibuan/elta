@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\testimonials;
+use App\Traits\FlashAlert;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class TestimonialsController extends Controller
 {
+    use FlashAlert;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,12 @@ class TestimonialsController extends Controller
      */
     public function index()
     {
-        //
+        $data = testimonials::all();
+        return view('admin.pages.testimonials.index', [
+            'title' => 'Testimonials',
+            'subTestimonials' => 'active',
+            'data' => $data
+        ]);
     }
 
     /**
@@ -24,7 +33,10 @@ class TestimonialsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.testimonials.create', [
+            'title' => 'Testimonials',
+            'subTestimonials' => 'active'
+        ]);
     }
 
     /**
@@ -35,7 +47,26 @@ class TestimonialsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521',
+            'qoute'=> 'required|min:5|max:191',
+            'name'=> 'required|min:5|max:191',
+        ]);
+
+        // thumbnail upload
+        $thumbnailFile = '';
+        if ($request->file('thumbnail')){
+            $thumbnail = $request->file('thumbnail')->store('testimonials','public');
+            $thumbnailFile = $thumbnail;
+        }
+
+        // save in db
+        $news = testimonials::create([
+            'thumbnail' => $thumbnailFile,
+            'qoute' => $request->qoute,
+            'name' => $request->name,
+        ]);
+        return redirect()->route('admin.testimonials.index')->with($this->alertCreated());
     }
 
     /**
@@ -57,7 +88,12 @@ class TestimonialsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = testimonials::findOrFail($id);
+        return view('admin.pages.testimonials.edit',[
+            'title' => 'Testimonials',
+            'subTestimonials' => 'active',
+            'data' => $data
+        ]);
     }
 
     /**
@@ -69,7 +105,33 @@ class TestimonialsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $data = testimonials::findOrFail($id);
+            $request->validate([
+                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521',
+                'qoute'=> 'required|min:5|max:191',
+                'name'=> 'required|min:5|max:191',
+            ]);
+
+            // thumbnail upload
+            $thumbnailFile = '';
+            if ($data->thumbnail && file_exists(storage_path('app/public/'. $data->thumbnail))){
+                \Storage::delete('public/'.$data->thumbnail);
+                $thumbnail = $request->file('thumbnail')->store('testimonials','public');
+                $thumbnailFile = $thumbnail;
+            }
+
+            // save in db
+            $data->update([
+                'thumbnail' => $thumbnailFile,
+                'qoute' => $request->qoute,
+                'name' => $request->name,
+            ]);
+            return redirect()->route('admin.testimonials.index')->with($this->alertCreated());
+        }catch (ModelNotFoundException $e){
+            return redirect()->route('admin.testimonials.index')->with($this->alertNotFound());
+
+        }
     }
 
     /**
@@ -80,6 +142,16 @@ class TestimonialsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $data = testimonials::findOrFail($id);
+            if ($data->thumbnail && file_exists(storage_path('app/public/'. $data->thumbnail))){
+                \Storage::delete('public/'.$data->thumbnail);
+            }
+            $data->delete();
+            return redirect()->route('admin.testimonials.index')->with($this->alertDeleted());
+        }catch (ModelNotFoundException $e){
+            return redirect()->route('admin.testimonials.index')->with($this->alertDeleted());
+
+        }
     }
 }
