@@ -16,6 +16,21 @@
             @endrole
 
             @role('superadmin','admin')
+            <li class="{{$subCreateAtricle   ?? ""}} {{$subShowArticle   ?? ""}}  treeview">
+                <a href=""><i class="fa fa-newspaper-o"></i> <span>News & article</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="nav-item {{$subCreateAtricle   ?? ""}}">
+                        <a href="{{route('admin.news.create')}}" class="nav-link"><i class="fa fa-plus"></i><span>Create Article</span></a>
+                    </li>
+                    <li class="nav-item {{$subShowArticle   ?? ""}}">
+                        <a href="{{route('admin.news.index')}}" class="nav-link"><i class="fa fa-newspaper-o"></i><span>Show Article</span></a>
+                    </li>
+                </ul>
+            </li>
             {{--manajement akses--}}
             <li class="{{$subUser   ?? ""}} {{$subRole   ?? ""}} {{$subPermission   ?? ""}}  treeview">
                 <a href=""><i class="fa fa-users"></i> <span>Access Management</span>
@@ -44,18 +59,18 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="nav-item {{$subMenu   ?? ""}}">
-                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Menu</span></a>
-                    </li>
+{{--                    <li class="nav-item {{$subMenu   ?? ""}}">--}}
+{{--                        <a href="" class="nav-link"><i class="fa fa-bullseye"></i><span>Menu</span></a>--}}
+{{--                    </li>--}}
                     <li class="nav-item {{$subHeader   ?? ""}}">
                         <a href="{{route('admin.header.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Header</span></a>
                     </li>
                     <li class="nav-item {{$subAbout   ?? ""}}">
                         <a href="{{route('admin.about.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>About</span></a>
                     </li>
-                    <li class="nav-item {{$subAboutMembership   ?? ""}}">
-                        <a href="{{route('admin.about-membership.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>About Membership</span></a>
-                    </li>
+{{--                    <li class="nav-item {{$subAboutMembership   ?? ""}}">--}}
+{{--                        <a href="{{route('admin.about-membership.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>About Membership</span></a>--}}
+{{--                    </li>--}}
                     <li class="nav-item {{$subColaboration   ?? ""}}">
                         <a href="{{route('admin.colaboration.index')}}" class="nav-link"><i class="fa fa-bullseye"></i><span>Colaboration</span></a>
                     </li>
@@ -65,22 +80,8 @@
                 </ul>
 
             </li>
-            {{--laporan--}}
-            <li class="{{$subCreateAtricle   ?? ""}} {{$subShowArticle   ?? ""}}  treeview">
-                <a href=""><i class="fa fa-newspaper-o"></i> <span>News & article</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="nav-item {{$subCreateAtricle   ?? ""}}">
-                        <a href="{{route('admin.news.create')}}" class="nav-link"><i class="fa fa-plus"></i><span>Create Article</span></a>
-                    </li>
-                    <li class="nav-item {{$subShowArticle   ?? ""}}">
-                        <a href="{{route('admin.news.index')}}" class="nav-link"><i class="fa fa-newspaper-o"></i><span>Show Article</span></a>
-                    </li>
-                </ul>
-            </li>
+
+
             @endrole
         </ul>
         <!-- /.sidebar-menu -->

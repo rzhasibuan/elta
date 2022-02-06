@@ -52,7 +52,7 @@
 
                 <div class="form-group">
                     <label for="linkButton">Link Button</label>
-                    <input type="text" class="form-control" id="linkButton" placeholder="please type link button" name="linkButton" value="{{old('linkButton')}}">
+                    <input type="url" class="form-control" id="linkButton" placeholder="please type link button" name="linkButton" value="{{old('linkButton')}}">
                     <div class="has-error">
                     <span class="help-block">
                         {{$errors->first('linkButton')}}
