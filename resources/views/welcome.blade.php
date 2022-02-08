@@ -55,29 +55,27 @@
             <ul class="pl-0 mt-3 mb-2 ml-auto flex flex-col list-none lg:mt-0 lg:mb-0 lg:flex-row">
 
                 <li>
-                    <a href="#home" class="nav-link page-scroll">Home</a>
+                    <a class="nav-link page-scroll" href="#header">Home</a>
                 </li>
                 <li>
-                    <a class="nav-link page-scroll" href="#features">Features</a>
+                    <a class="nav-link page-scroll" href="#about">About</a>
                 </li>
                 <li>
-                    <a class="nav-link page-scroll" href="#details">Details</a>
+                    <a class="nav-link page-scroll" href="#features">Membership</a>
                 </li>
-                <li>
-                    <a class="nav-link page-scroll" href="#pricing">Pricing</a>
-                </li>
+
                 <li class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publication</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item page-scroll" href="article.html">Article Details</a>
+                        <a class="dropdown-item page-scroll" href="https://journal.eltaorganization.org">Journal</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item page-scroll" href="terms.html">Terms Conditions</a>
+                        <a class="dropdown-item page-scroll" href="https://journal.eltaorganization.org/index.php/joal">Journal of applied linguistics</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item page-scroll" href="privacy.html">Privacy Policy</a>
+                        <a class="dropdown-item page-scroll" href="https://journal.eltaorganization.org/index.php/jcar">Journal of  Class Action Research</a>
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link page-scroll" href="#download">Download</a>
+                    <a class="nav-link page-scroll" href="#download">Contact</a>
                 </li>
             </ul>
 
@@ -93,15 +91,15 @@
              data-aos="fade-up"
              data-aos-offset="100"
              data-aos-duration="1000">
-            <h1 class="h1-large mb-5 text-white">English Lecturers And Teachers Association</h1>
-            <p class="p-large mb-8 text-white">Start getting things done together with your team based on Pavo's revolutionary team management features</p>
-            <a class="bg-blue-100 py-2 px-4 rounded-full text-gray-700 hover:shadow-xl hover:bg-blue-500 hover:text-white" href="#your-link">JOIN MEMBERSHIP</a>
+            <h1 class="h1-large mb-5 text-white">{{$header->bigtitle ?? ""}}</h1>
+            <p class="p-large mb-8 text-white">{!! $header->text ?? "" !!}</p>
+            <a class="bg-blue-100 py-2 px-4 rounded-full text-gray-700 hover:shadow-xl hover:bg-blue-500 hover:text-white" href="{{$header->linkButton ?? ""}}">JOIN MEMBERSHIP</a>
         </div>
         <div class="xl:text-right item-aos"
              data-aos="fade-up"
              data-aos-offset="100"
              data-aos-duration="1000">
-            <img class="inline rounded-xl shadow-xl" src="{{asset('frontend/images/elta2.jpg')}}" alt="English Lecturers And Teachers Association" />
+            <img class="inline rounded-xl shadow-xl" src="{{asset('storage/')}}/{{$header->thumbnail ?? ""}}" alt="English Lecturers And Teachers Association" />
         </div>
     </div> <!-- end of container -->
 </header> <!-- end of header -->
@@ -110,26 +108,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#1e40af" fill-opacity="1" d="M0,192L80,197.3C160,203,320,213,480,208C640,203,800,181,960,176C1120,171,1280,181,1360,186.7L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
 <!-- end waves -->
 <!-- about -->
-<div class="about">
+<div class="about" id="about">
     <div class="text-center"
          data-aos="fade-up"
          data-aos-offset="100"
          data-aos-duration="1000">
         <h2 class="text-gray-500 my-10">ABOUT ELTA</h2>
     </div>
-    <div class="flex lg:flex-row flex-col max-w-5xl mx-auto my-8">
-        <div class="mx-4 flex justify-center"
+    <div class="flex lg:flex-row flex-col max-w-5xl mx-auto my-8  items-center">
+        <div class="lg:mx-4 mx-auto flex justify-center w-5/6"
              data-aos="fade-up"
              data-aos-offset="200"
              data-aos-duration="1000">
-            <img class="rounded-xl shadow-lg" src="{{asset('frontend/images/elta4.jpg')}}" alt="Man looking at item at a store">
+            <img class="rounded-xl shadow-lg object-cover h-52 w-96" src="{{asset('storage/')}}/{{$about->thumbnail ?? ""}}" alt="{{$header->bigtitle ?? ""}}">
         </div>
-        <div class="flex flex-col justify-center items-center mx-4 rounded-xl shadow-lg lg:my-0 my-4 bg-gray-50"
+        <div class="flex flex-col items-center lg:mx-4 mx-auto rounded-xl transform transition duration-150  lg:my-0 my-4 w-5/6 lg:p-8 p-0"
              data-aos="fade-up"
              data-aos-offset="300"
              data-aos-duration="1000">
-            <p class="text-justify p-6 text-gray-500">English Lecturers and Teachers association (ELTA) is a non-governmental, non-profit association of lecturers and teachers of English in Indonesia, published in Indonesia and legalized by the ministry of Human Right and Law (KEMENHUMHAM) NO. AHU-0008624.AH.01.07.2021, dated on 16th July 2021. </p>
-            <a href="#" class="bg-blue-400 text-white py-4 px-6 rounded-full my-4 hover:shadow-lg hover:bg-white hover:text-gray-500">Read More About Us</a>
+            <p class="text-justify p-6 text-gray-500">{{ $about->description ?? "" }}</p>
+            <div>
+                <a href="#" class="bg-blue-400 text-white py-4 px-6 rounded-full my-4 hover:shadow-lg hover:bg-white hover:text-gray-500">Read More About Us</a>
+            </div>
         </div>
     </div>
 </div>
@@ -159,8 +159,10 @@
                 <img src="{{asset('frontend/images/features-icon-1.svg')}}" alt="alternative" />
             </div>
             <div class="card-body">
-                <h5 class="card-title text-gray-200">Platform Integration</h5>
-                <p class="mb-4 text-gray-100">You sales force can use the app on any smartphone platform without compatibility issues</p>
+                <h5 class="card-title text-gray-200">Annual Conference </h5>
+                <p class="mb-4 text-gray-100">
+                    Attending ELTA Annual Conference and other events organised by ELTA at members’ rate
+                </p>
             </div>
         </div>
         <!-- end of card -->
@@ -174,8 +176,8 @@
                 <img src="{{asset('frontend/images/features-icon-1.svg')}}" alt="alternative" />
             </div>
             <div class="card-body">
-                <h5 class="card-title text-gray-200">Platform Integration</h5>
-                <p class="mb-4 text-gray-100">You sales force can use the app on any smartphone platform without compatibility issues</p>
+                <h5 class="card-title text-gray-200">Professional Development </h5>
+                <p class="mb-4 text-gray-100">Discounted registration fees for educational and professional development courses and seminars accredited by ELTA</p>
             </div>
         </div>
         <!-- end of card -->
@@ -189,8 +191,8 @@
                 <img src="{{asset('frontend/images/features-icon-1.svg')}}" alt="alternative" />
             </div>
             <div class="card-body">
-                <h5 class="card-title text-gray-200">Platform Integration</h5>
-                <p class="mb-4 text-gray-100">You sales force can use the app on any smartphone platform without compatibility issues</p>
+                <h5 class="card-title text-gray-200">Journal Publication </h5>
+                <p class="mb-4 text-gray-100">Discounted journal publication fees on ELTA’s Journal (JoAL, JCAR and Community Service Journal “MADUMA”)</p>
             </div>
         </div>
         <!-- end of card -->
@@ -204,8 +206,8 @@
                 <img src="{{asset('frontend/images/features-icon-1.svg')}}" alt="alternative" />
             </div>
             <div class="card-body">
-                <h5 class="card-title text-gray-200">Platform Integration</h5>
-                <p class="mb-4 text-gray-100">You sales force can use the app on any smartphone platform without compatibility issues</p>
+                <h5 class="card-title text-gray-200">Networking With Colleagues </h5>
+                <p class="mb-4 text-gray-100">Networking with colleagues from other national and international associations</p>
             </div>
         </div>
         <!-- end of card -->
@@ -220,12 +222,26 @@
                 <img src="{{asset('frontend/images/features-icon-1.svg')}}" alt="alternative" />
             </div>
             <div class="card-body">
-                <h5 class="card-title text-gray-200">Platform Integration</h5>
-                <p class="mb-4 text-gray-100">You sales force can use the app on any smartphone platform without compatibility issues</p>
+                <h5 class="card-title text-gray-200">Speaker Conference</h5>
+                <p class="mb-4 text-gray-100">Opportunity to be keynote speaker on conference and seminar held by ELTA</p>
             </div>
         </div>
         <!-- end of card -->
 
+        <!-- Card -->
+{{--        <div class="card shadow-xl"--}}
+{{--             data-aos="fade-up"--}}
+{{--             data-aos-offset="300"--}}
+{{--             data-aos-duration="1000">--}}
+{{--            <div class="card-image">--}}
+{{--                <img src="{{asset('frontend/images/features-icon-1.svg')}}" alt="alternative" />--}}
+{{--            </div>--}}
+{{--            <div class="card-body">--}}
+{{--                <h5 class="card-title text-gray-200">Regional Conferences</h5>--}}
+{{--                <p class="mb-4 text-gray-100">Opportunity to represent ELTA at regional conferences</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+        <!-- end of card -->
         <!-- Card -->
         <div class="card shadow-xl"
              data-aos="fade-up"
@@ -235,11 +251,10 @@
                 <img src="{{asset('frontend/images/features-icon-1.svg')}}" alt="alternative" />
             </div>
             <div class="card-body">
-                <h5 class="card-title text-gray-200">Platform Integration</h5>
-                <p class="mb-4 text-gray-100">You sales force can use the app on any smartphone platform without compatibility issues</p>
+                <h5 class="card-title text-gray-200">International Professional Projects</h5>
+                <p class="mb-4 text-gray-100">Opportunity to participate in regional and international professional projects held by ELTA</p>
             </div>
         </div>
-        <!-- end of card -->
     </div> <!-- end of container -->
     <div class="max-w-2xl mx-auto flex justify-center" data-aos="fade-up"
          data-aos-offset="100"
@@ -260,61 +275,61 @@
         <h2 class="text-gray-100 text-center">WE COLLABORATION WITH</h2>
     </div>
     <div class="max-w-7xl mx-auto flex lg:flex-row flex-col justify-center" >
-
+        @foreach($colaboration as $colab)
         <div class="mx-4"
              data-aos="fade-up"
              data-aos-offset="100"
              data-aos-duration="1000">
-            <a href="https://lldikti1.kemdikbud.go.id/">
-                <img src="{{asset('frontend/images/Logo_Kemenristekdikti.png')}}" alt="Kemenristekdikti wilayah I" class="opacity-30 lg:w-80 w-40 mx-auto lg:p-0 p-6 transition duration-300 hover:opacity-100">
+            <a href="{{$colab->link}}">
+                <img src="{{asset('storage/'.$colab->thumbnail)}}" alt="we colloboration" class="opacity-30 object-cover h-40 w-80 mx-auto lg:p-0 p-6 transition duration-300 hover:opacity-100">
             </a>
         </div>
+        @endforeach
+{{--        <div class="mx-4"--}}
+{{--             data-aos="fade-up"--}}
+{{--             data-aos-offset="100"--}}
+{{--             data-aos-duration="1000">--}}
+{{--            <a href="https://www.methodist.ac.id/home.do">--}}
+{{--                <img src="{{asset('frontend/images/methodist_logo.png')}}" alt="universitas methodist indonesia medan" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
-        <div class="mx-4"
-             data-aos="fade-up"
-             data-aos-offset="100"
-             data-aos-duration="1000">
-            <a href="https://www.methodist.ac.id/home.do">
-                <img src="{{asset('frontend/images/methodist_logo.png')}}" alt="universitas methodist indonesia medan" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">
-            </a>
-        </div>
+{{--        <div class="mx-4"--}}
+{{--             data-aos="fade-up"--}}
+{{--             data-aos-offset="100"--}}
+{{--             data-aos-duration="1000">--}}
+{{--            <a href="https://uhn.ac.id/">--}}
+{{--                <img src="{{asset('frontend/images/logo_cms_uhn.png')}}" alt="universitas hkbp medan" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
-        <div class="mx-4"
-             data-aos="fade-up"
-             data-aos-offset="100"
-             data-aos-duration="1000">
-            <a href="https://uhn.ac.id/">
-                <img src="{{asset('frontend/images/logo_cms_uhn.png')}}" alt="universitas hkbp medan" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">
-            </a>
-        </div>
+{{--        <div class="mx-4"--}}
+{{--             data-aos="fade-up"--}}
+{{--             data-aos-offset="100"--}}
+{{--             data-aos-duration="1000">--}}
+{{--            <a href="https://uisu.ac.id">--}}
+{{--                <img src="{{asset('frontend/images/header-uisu-1.png')}}" alt="universitas islam sumatra utara" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
-        <div class="mx-4"
-             data-aos="fade-up"
-             data-aos-offset="100"
-             data-aos-duration="1000">
-            <a href="https://uisu.ac.id">
-                <img src="{{asset('frontend/images/header-uisu-1.png')}}" alt="universitas islam sumatra utara" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">
-            </a>
-        </div>
-
-        <div class="mx-4"
-             data-aos="fade-up"
-             data-aos-offset="100"
-             data-aos-duration="1000">
-            <a href="">
-                <img src="{{asset('frontend/images/santomas.png')}}" alt="universitas santo thomas medan" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">
-            </a>
-        </div>
+{{--        <div class="mx-4"--}}
+{{--             data-aos="fade-up"--}}
+{{--             data-aos-offset="100"--}}
+{{--             data-aos-duration="1000">--}}
+{{--            <a href="">--}}
+{{--                <img src="{{asset('frontend/images/santomas.png')}}" alt="universitas santo thomas medan" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
 
-        <div class="mx-4"
-             data-aos="fade-up"
-             data-aos-offset="100"
-             data-aos-duration="1000">
-            <a href="#">
-                <img src="{{asset('frontend/images/bukitlawang.webp')}}" alt="Kemenristekdikti wilayah I" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">
-            </a>
-        </div>
+{{--        <div class="mx-4"--}}
+{{--             data-aos="fade-up"--}}
+{{--             data-aos-offset="100"--}}
+{{--             data-aos-duration="1000">--}}
+{{--            <a href="#">--}}
+{{--                <img src="{{asset('frontend/images/bukitlawang.webp')}}" alt="Kemenristekdikti wilayah I" class="opacity-30 lg:w-80 w-40 mx-auto p-6 transition duration-300 hover:opacity-100">--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
     </div>
 </div>
@@ -339,77 +354,19 @@
             <div class="swiper-container card-slider">
                 <div class="swiper-wrapper">
 
-                    <!-- Slide -->
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img class="card-image" src="{{asset('frontend/images/testimonial-1.jpg')}}" alt="alternative" />
-                            <div class="card-body">
-                                <p class="italic mb-3">It's been so fun to work with Pavo, I've managed to integrate it properly into my business flow and it's great</p>
-                                <p class="testimonial-author">Jude Thorn - Designer</p>
+                    @foreach($testimonials as $testi)
+                        <div class="swiper-slide">
+                            <div class="card">
+                                <img class="card-image" src="{{asset('storage/'.$testi->thumbnail)}}" alt="{{$testi->name}}" />
+                                <div class="card-body">
+                                    <p class="italic mb-3">{{$testi->qoute}}</p>
+                                    <p class="testimonial-author">{{$testi->name}}</p>
+                                </div>
                             </div>
-                        </div>
-                    </div> <!-- end of swiper-slide -->
-                    <!-- end of slide -->
+                        </div> <!-- end of swiper-slide -->
+                        <!-- end of slide -->
+                    @endforeach
 
-                    <!-- Slide -->
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img class="card-image" src="{{asset('frontend/images/testimonial-2.jpg')}}" alt="alternative" />
-                            <div class="card-body">
-                                <p class="italic mb-3">We were so focused on launching as many campaigns as possible that we've forgotten to target our loyal customers</p>
-                                <p class="testimonial-author">Roy Smith - Developer</p>
-                            </div>
-                        </div>
-                    </div> <!-- end of swiper-slide -->
-                    <!-- end of slide -->
-
-                    <!-- Slide -->
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img class="card-image" src="{{asset('frontend/images/testimonial-3.jpg')}}" alt="alternative" />
-                            <div class="card-body">
-                                <p class="italic mb-3">I've been searching for a tool like Pavo for so long. I love the reports it generates and the amazing high accuracy</p>
-                                <p class="testimonial-author">Marsha Singer - Marketer</p>
-                            </div>
-                        </div>
-                    </div> <!-- end of swiper-slide -->
-                    <!-- end of slide -->
-
-                    <!-- Slide -->
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img class="card-image" src="{{asset('frontend/images/testimonial-4.jpg')}}" alt="alternative" />
-                            <div class="card-body">
-                                <p class="italic mb-3">We've been waiting for a powerful piece of software that can help businesses manage their marketing projects</p>
-                                <p class="testimonial-author">Tim Shaw - Designer</p>
-                            </div>
-                        </div>
-                    </div> <!-- end of swiper-slide -->
-                    <!-- end of slide -->
-
-                    <!-- Slide -->
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img class="card-image" src="{{asset('frontend/images/testimonial-5.jpg')}}" alt="alternative" />
-                            <div class="card-body">
-                                <p class="italic mb-3">Searching for a great prototyping and layout design app was difficult but thankfully I found app suite quickly</p>
-                                <p class="testimonial-author">Lindsay Spice - Marketer</p>
-                            </div>
-                        </div>
-                    </div> <!-- end of swiper-slide -->
-                    <!-- end of slide -->
-
-                    <!-- Slide -->
-                    <div class="swiper-slide">
-                        <div class="card">
-                            <img class="card-image" src="{{asset('frontend/images/testimonial-6.jpg')}}" alt="alternative" />
-                            <div class="card-body">
-                                <p class="italic mb-3">The app support team is amazing. They've helped me with some issues and I am so grateful to the entire team</p>
-                                <p class="testimonial-author">Ann Blake - Developer</p>
-                            </div>
-                        </div>
-                    </div> <!-- end of swiper-slide -->
-                    <!-- end of slide -->
 
                 </div> <!-- end of swiper-wrapper -->
 
@@ -434,66 +391,23 @@
         <h2 class="text-gray-500 text-center p-10">Read latest news & articles</h2>
     </div>
     <div class="max-w-7xl mx-auto flex lg:flex-row flex-col justify-center my-10 lg:p-0 p-10">
+        @foreach($news as $news)
         <a href="">
-            <div class="rounded overflow-hidden shadow-lg lg:mx-2 lg:my-0 my-4 "
+            <div class="rounded-lg overflow-hidden shadow-sm mx-4 lg:my-0 my-4 hover:shadow-xl transition duration-150 w-50"
                  data-aos="fade-up"
                  data-aos-offset="100"
                  data-aos-duration="1000">
-                <img class="w-full" src="{{asset('frontend/images/elta2.jpg')}}" alt="Sunset in the mountains">
+                <img src="{{asset('storage/'.$news->thumbnail)}}" alt="{{$news->title}}"  class="object-cover h-52 w-96">
                 <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                    <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                    </p>
+                    <div class="font-bold text-xl mb-2">{{$news->title}}</div>
+                    <p class="card-text"><small class="text-muted">Publish {{$news->created_at->format('d M, Y')}}</small></p>
                 </div>
                 <div class="px-6 pt-4 pb-2">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{$news->category}}</span>
                 </div>
             </div>
         </a>
-
-        <a href="">
-            <div class="rounded overflow-hidden shadow-lg lg:mx-2 lg:my-0 my-4 "
-                 data-aos="fade-up"
-                 data-aos-offset="100"
-                 data-aos-duration="1000">
-                <img class="w-full" src="{{asset('frontend/images/elta2.jpg')}}" alt="Sunset in the mountains">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                    <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                    </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="">
-            <div class="rounded overflow-hidden shadow-lg lg:mx-2 lg:my-0 my-4 "
-                 data-aos="fade-up"
-                 data-aos-offset="100"
-                 data-aos-duration="1000">
-                <img class="w-full" src="{{asset('frontend/images/elta2.jpg')}}" alt="Sunset in the mountains">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-                    <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                    </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-                </div>
-            </div>
-        </a>
-
+        @endforeach
 
     </div>
 

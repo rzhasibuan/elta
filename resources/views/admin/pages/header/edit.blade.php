@@ -84,10 +84,10 @@
         $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
-            CKEDITOR.replace('text',{
-                filebrowserUploadUrl: "{{route('admin.ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod : 'form',
-            })
+            {{--CKEDITOR.replace('text',{--}}
+            {{--    filebrowserUploadUrl: "{{route('admin.ckeditor.image-upload', ['_token' => csrf_token() ])}}",--}}
+            {{--    filebrowserUploadMethod : 'form',--}}
+            {{--})--}}
         })
 
         //Initialize Select2 Elements

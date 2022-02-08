@@ -35,6 +35,16 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" placeholder="please type description" name="description" value="{{$data->description}}">
+                    {{-- <p class="help-block">Example block-level help text here.</p> --}}
+                    <div class="has-error">
+                    <span class="help-block">
+                        {{$errors->first('description')}}
+                    </span>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <textarea name="text" id="text" cols="60" rows="10">{{$data->text}}</textarea>

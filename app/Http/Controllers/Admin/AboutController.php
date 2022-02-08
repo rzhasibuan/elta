@@ -49,6 +49,7 @@ class AboutController extends Controller
     {
         $request->validate([
             'text' => 'required',
+            'description' => 'required|max:255',
             'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
         ]);
 
@@ -62,6 +63,7 @@ class AboutController extends Controller
         // save in db
         $news = About::create([
             'thumbnail' => $thumbnailFile,
+            'description' => $request->description,
             'text' => $request->text,
         ]);
         return redirect()->route('admin.about.index')->with($this->alertCreated());
@@ -108,6 +110,7 @@ class AboutController extends Controller
 
             $request->validate([
                 'text' => 'required',
+                'description' => 'required|max:255',
                 'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
             ]);
 
@@ -122,6 +125,7 @@ class AboutController extends Controller
             // save in db
             $data->update([
                 'thumbnail' => $thumbnailFile,
+                'description' => $request->description,
                 'text' => $request->text,
             ]);
             return redirect()->route('admin.about.index')->with($this->alertUpdated());
