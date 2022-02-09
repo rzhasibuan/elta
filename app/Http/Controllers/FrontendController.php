@@ -14,7 +14,7 @@ class FrontendController extends Controller
     public function index()
     {
 //        $news = News::all()->sortByDesc('created_at');
-        $news = News::orderBy('created_at','desc')->paginate(3);
+        $news = News::orderBy('created_at','desc')->where('published',1)->paginate(3);
         $colaboration = Colaboration::all();
         $testimonials = testimonials::all();
         $about = About::all()->first();
@@ -27,5 +27,9 @@ class FrontendController extends Controller
             'about' => $about,
             'header' => $header
         ]);
+    }
+    public function blog($id){
+        $news = News::where('slug',$id)->get();
+        dd($news);
     }
 }
