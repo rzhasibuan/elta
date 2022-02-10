@@ -43,9 +43,13 @@ class FrontendController extends Controller
 //        $data = News::where('slug',$id)->get()->first();
         $news = News::orderBy('created_at','desc')->where('published',1)->paginate(10);
 
-        return view('frontend.blog', [
+        return view('frontend.blogs', [
             'title' => 'news, Infromation & articles',
             'news' => $news
         ]);
+    }
+
+    public function about(){
+        return view('');
     }
 }

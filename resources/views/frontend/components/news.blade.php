@@ -26,7 +26,7 @@
     </div>
 
     <div class="max-w-2xl mx-auto flex justify-center">
-        <a href="#" class="bg-blue-500 py-3 px-6 text-white rounded-full hover:bg-blue-100 shadow-xl hover:text-blue-900 transition duration-300"
+        <a href="{{route('frontend.blogs')}}" class="bg-blue-500 py-3 px-6 text-white rounded-full hover:bg-blue-100 shadow-xl hover:text-blue-900 transition duration-300"
            data-aos="fade-up"
            data-aos-offset="100"
            data-aos-duration="1000">More News</a>

@@ -12,15 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// frontend
 Route::get('/', 'FrontendController@index')->name('frontend.index');
 Route::get('/blog/{id}', 'FrontendController@blog')->name('frontend.blog');
-
+Route::get('/blog', 'FrontendController@blogs')->name('frontend.blogs');
+Route::get('/about','FrontendController@about')->name('frontend.about');
+// auth
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/covid19','CertaintyFactorController@proses');
 
+//admin
 Route::name('admin.') //pemberian nama seperti admin.user.index
 ->prefix('admin')
 ->namespace('Admin')
@@ -37,6 +39,3 @@ Route::name('admin.') //pemberian nama seperti admin.user.index
     Route::resource('testimonials', 'TestimonialsController');
     Route::post('ckeditor/upload', 'CKEditorController@upload')->name('ckeditor.image-upload');
 });
-
-Route::get('/diagnosa','DiagnosaController@index')->name('diagnosa.index');
-Route::post('/diagnosa','DiagnosaController@store')->name('diagnosa.store');

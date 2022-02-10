@@ -18,7 +18,7 @@
              data-aos-duration="1000">
             <p class="text-justify p-6 text-gray-500">{{ $about->description ?? "" }}</p>
             <div>
-                <a href="#" class="bg-blue-400 text-white py-4 px-6 rounded-full my-4 hover:shadow-lg hover:bg-white hover:text-gray-500">Read More About Us</a>
+                <a href="{{route('frontend.about')}}" class="bg-blue-400 text-white py-4 px-6 rounded-full my-4 hover:shadow-lg hover:bg-white hover:text-gray-500">Read More About Us</a>
             </div>
         </div>
     </div>
