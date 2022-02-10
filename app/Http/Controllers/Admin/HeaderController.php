@@ -114,8 +114,17 @@ class HeaderController extends Controller
                 'bigTitle'=> 'required|min:5|max:191',
                 'text' => 'required',
                 'linkButton'=> 'required|min:5|max:191',
-                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
+                'thumbnail' => 'image|mimes:jpg,jpeg,png,gif|max:521'
             ]);
+
+            if($request->file('thumbnail') === null) {
+                $data->update([
+                    'bigtitle' => $request->bigTitle,
+                    'text' => $request->text,
+                    'linkButton' => $request->linkButton,
+                ]);
+                return redirect()->route('admin.header.index')->with($this->alertUpdated());
+            }
 
             // thumbnail upload
             $thumbnailFile = '';

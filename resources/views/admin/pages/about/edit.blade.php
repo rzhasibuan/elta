@@ -57,7 +57,7 @@
 
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                     <a href="{{url('/home')}}" class="btn btn-danger">Cancel</a>
                 </div>
         </form>

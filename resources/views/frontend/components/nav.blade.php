@@ -34,7 +34,7 @@
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link page-scroll" href="#download">Contact</a>
+                    <a class="nav-link page-scroll" href="https://api.whatsapp.com/send?phone=6282364268122&text=hai%20elta%20">Contact</a>
                 </li>
             </ul>
 

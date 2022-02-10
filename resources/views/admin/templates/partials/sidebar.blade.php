@@ -11,8 +11,8 @@
             {{--dasbboard--}}
             <li class="{{$subDashboard ?? ""}}"><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             {{--membership--}}
-            @role('membership')
-            <li class="{{$subDiagnosa ?? ""}}"><a href="{{url('/diagnosa')}}"><i class="fa fa-medkit"></i> <span>Diagnosa</span></a></li>
+            @role('user')
+            {{-- <li class="{{$subDiagnosa ?? ""}}"><a href="{{url('/diagnosa')}}"><i class="fa fa-medkit"></i> <span>Diagnosa</span></a></li> --}}
             @endrole
 
             @role('superadmin','admin')

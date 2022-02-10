@@ -125,8 +125,20 @@ class NewsController extends Controller
                 'article' => 'required',
                 'published' => 'required',
                 'category' => 'required|max:30',
-                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
+                'thumbnail' => 'image|mimes:jpg,jpeg,png,gif|max:521'
             ]);
+
+            if($request->file('thumbnail') === null) {
+                $data->update([
+                    'user_id' => auth()->user()->id,
+                    'title' => $request->title,
+                    'slug' => strtolower(Str::slug($request->title. '_'. time())),
+                    'category' => $request->category,
+                    'article' => $request->article,
+                    'published' => $request->published
+                ]);
+                return redirect()->route('admin.news.index')->with($this->alertUpdated());
+            }
 
             // thumbnail upload
             $thumbnailFile = '';

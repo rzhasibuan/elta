@@ -4,82 +4,114 @@
     <h3 class="text-left">Hallo, {{Auth()->user()->name}}</h3>
     @role('superadmin','admin')
     <div class="row">
-            <div class="col-lg-4 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-aqua">
-                    <div class="inner">
-{{--                        <h3>{{$pasien}}</h3>--}}
 
-                        <p>Patient / Pasien</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person"></i>
-                    </div>
-{{--                    <a href="{{route('admin.pasien.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
-                </div>
-            </div>
-            <!-- ./col -->
             <div class="col-lg-4 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-{{--                        <h3>{{$gejala}}</h3>--}}
-
-                        <p>Symptom / Gejala</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-medkit"></i>
-                    </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-4 col-xs-6">
-                <!-- small box -->
-                <div class="small-box bg-yellow">
-                    <div class="inner">
-{{--                        <h3>{{$user}}</h3>--}}
-
+                       <h3>{{$users}}</h3>
                         <p>User Management</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-stalker"></i>
+                        {{-- <i class="ion ion-person-stalker"></i> --}}
                     </div>
                     <a href="{{route('admin.user.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-        </div>
-    <h3>Berikut hasil permeriksaaan</h3>
-    <div class="box box-solid bg-teal-gradient">
-        <div class="box-footer no-border">
-            <div class="row">
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-{{--                    <input type="text" class="knob" data-readonly="true" value="{{$statusNegatif}}" data-width="60" data-height="60"--}}
-{{--                           data-fgColor="#39CCCC">--}}
-
-                    <div class="knob-label">Negatif</div>
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                       <h3>{{$users}}</h3>
+                        <p>Role Management</p>
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-person-stalker"></i> --}}
+                    </div>
+                    <a href="{{route('admin.user.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-{{--                    <input type="text" class="knob" data-readonly="true" value="{{$statusKemungkinanBesar}}}" data-width="60" data-height="60"--}}
-{{--                           data-fgColor="#39CCCC">--}}
-
-                    <div class="knob-label">Kemungkinan Besar</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center">
-{{--                    <input type="text" class="knob" data-readonly="true" value="{{$statusPositif}}" data-width="60" data-height="60"--}}
-{{--                           data-fgColor="#39CCCC">--}}
-
-                    <div class="knob-label">Positif</div>
-                </div>
-                <!-- ./col -->
             </div>
-            <!-- /.row -->
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                       <h3>{{$permission}}</h3>
+                        <p>Permission</p>
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-person-stalker"></i> --}}
+                    </div>
+                    <a href="{{route('admin.user.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                       <h3>{{$collaboration}}</h3>
+                        <p>Collaboration</p>
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-person-stalker"></i> --}}
+                    </div>
+                    <a href="{{route('admin.user.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                       <h3>{{$testimonials}}</h3>
+                        <p>Tersimonials</p>
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-person-stalker"></i> --}}
+                    </div>
+                    <a href="{{route('admin.user.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                       <h3>{{$header}}</h3>
+                        <p>Header</p>
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-person-stalker"></i> --}}
+                    </div>
+                    <a href="{{route('admin.user.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                       <h3>{{$news}}</h3>
+                        <p>News / Articles</p>
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-newspaper"></i> --}}
+                    </div>
+                   <a href="{{route('admin.news.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                       <h3>{{$about}}</h3>
+                        <p>About</p>
+                    </div>
+                    <div class="icon">
+                        {{-- <i class="ion ion-newspaper"></i> --}}
+                    </div>
+                   <a href="{{route('admin.news.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
         </div>
-    </div>
     @endrole
-    @role('pasien')
+    @role('user')
     <div class="box box-solid bg-teal-gradient">
         <div class="box-body">
             <h5 class="text-center">Berikut hasil diagnosa anda</h5>

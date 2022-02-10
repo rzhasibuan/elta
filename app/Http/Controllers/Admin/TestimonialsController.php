@@ -108,11 +108,18 @@ class TestimonialsController extends Controller
         try{
             $data = testimonials::findOrFail($id);
             $request->validate([
-                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521',
+                'thumbnail' => 'image|mimes:jpg,jpeg,png,gif|max:521',
                 'qoute'=> 'required|min:5|max:191',
                 'name'=> 'required|min:5|max:191',
             ]);
 
+            if($request->file('thumbnail') === null) {
+                    $data->update([
+                    'qoute' => $request->qoute,
+                    'name' => $request->name,
+                ]);
+                return redirect()->route('admin.testimonials.index')->with($this->alertCreated());
+            }
             // thumbnail upload
             $thumbnailFile = '';
             if ($data->thumbnail && file_exists(storage_path('app/public/'. $data->thumbnail))){

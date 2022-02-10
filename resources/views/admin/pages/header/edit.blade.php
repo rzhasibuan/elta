@@ -14,6 +14,10 @@
 @section('content')
     <div class="box box-primary">
 
+        @if (session('message'))
+        <x-alert :type="session('type')" :message="session('message')" />
+        @endif
+
         <!-- /.box-header -->
         <!-- form start -->
         <form action="{{route('admin.header.update',$data->id)}}" method="post" enctype="multipart/form-data">
@@ -66,7 +70,7 @@
 
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                     <a href="{{url('/home')}}" class="btn btn-danger">Cancel</a>
                 </div>
         </form>

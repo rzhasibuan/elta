@@ -106,9 +106,16 @@ class ColaborationController extends Controller
             $data = Colaboration::findOrFail($id);
 
             $request->validate([
-                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521',
+                'thumbnail' => 'image|mimes:jpg,jpeg,png,gif|max:521',
                 'link'=> 'required|min:5|max:191',
             ]);
+
+            if($request->file('thumbnail') === null) {
+                $data->update([
+                    'link' => $request->link,
+                ]);
+                return redirect()->route('admin.colaboration.index')->with($this->alertUpdated());
+            }
 
             // thumbnail upload
             $thumbnailFile = '';

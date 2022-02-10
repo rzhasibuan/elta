@@ -111,8 +111,16 @@ class AboutController extends Controller
             $request->validate([
                 'text' => 'required',
                 'description' => 'required|max:255',
-                'thumbnail' => 'required|image|mimes:jpg,jpeg,png,gif|max:521'
+                'thumbnail' => 'image|mimes:jpg,jpeg,png,gif|max:521'
             ]);
+
+            if($request->file('thumbnail') === null) {
+                $data->update([
+                    'description' => $request->description,
+                    'text' => $request->text,
+                ]);
+                return redirect()->route('admin.about.index')->with($this->alertUpdated());
+            }
 
             // thumbnail upload
             $thumbnailFile = '';

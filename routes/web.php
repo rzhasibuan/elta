@@ -21,7 +21,9 @@ Route::get('/about','FrontendController@about')->name('frontend.about');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/register', function(){
+    return redirect('/login');
+});
 //admin
 Route::name('admin.') //pemberian nama seperti admin.user.index
 ->prefix('admin')

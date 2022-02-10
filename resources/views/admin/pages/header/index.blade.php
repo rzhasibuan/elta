@@ -14,6 +14,10 @@
 @section('content')
     <div class="box box-primary">
 
+        @if (session('message'))
+        <x-alert :type="session('type')" :message="session('message')" />
+        @endif
+
         <!-- /.box-header -->
         <!-- form start -->
         <form action="{{route('admin.header.store')}}" method="post" enctype="multipart/form-data">
