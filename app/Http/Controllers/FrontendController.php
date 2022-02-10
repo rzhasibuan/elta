@@ -50,6 +50,10 @@ class FrontendController extends Controller
     }
 
     public function about(){
-        return view('');
+        $about = About::get()->first();
+        return view('frontend.about', [
+            'title' => 'About',
+            'data' => $about
+        ]);
     }
 }
