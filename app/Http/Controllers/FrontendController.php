@@ -20,7 +20,7 @@ class FrontendController extends Controller
         $about = About::all()->first();
 //        dd($about);
         $header = Header::all()->first();
-        return view('welcome', [
+        return view('frontend.welcome', [
             'news' => $news,
             'testimonials' => $testimonials,
             'colaboration' => $colaboration,
@@ -29,7 +29,23 @@ class FrontendController extends Controller
         ]);
     }
     public function blog($id){
-        $news = News::where('slug',$id)->get();
-        dd($news);
+        $data = News::where('slug',$id)->get()->first();
+        $news = News::orderBy('created_at','desc')->where('published',1)->paginate(3);
+
+        return view('frontend.blog', [
+            'title' => $data->title,
+            'data' => $data,
+            'news' => $news
+        ]);
+    }
+
+    public function blogs(){
+//        $data = News::where('slug',$id)->get()->first();
+        $news = News::orderBy('created_at','desc')->where('published',1)->paginate(10);
+
+        return view('frontend.blog', [
+            'title' => 'news, Infromation & articles',
+            'news' => $news
+        ]);
     }
 }

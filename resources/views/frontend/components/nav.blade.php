@@ -1,11 +1,8 @@
 <nav class="navbar fixed-top">
     <div class="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
 
-        <!-- Text Logo - Use this if you don't have a graphic logo -->
-        <!-- <a class="text-gray-800 font-semibold text-3xl leading-4 no-underline page-scroll" href="index.html">Pavo</a> -->
-
         <!-- Image Logo -->
-        <a class="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline flex items-center text-white" href="index.html">
+        <a class="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline flex items-center text-white" href="/">
             <img src="{{asset('frontend/images/elta.png')}}" alt="alternative" class="h-8" />
         </a>
 
