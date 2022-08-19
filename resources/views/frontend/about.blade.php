@@ -123,9 +123,8 @@
 </div>
 
 
-<article class="prose max-w-5xl mx-auto mb-5">
+<article class="prose max-w-5xl mx-auto mb-5 lg:p-0 p-5">
     {!! $data->text !!}
-    
 </article>
 
 <!-- Footer -->
